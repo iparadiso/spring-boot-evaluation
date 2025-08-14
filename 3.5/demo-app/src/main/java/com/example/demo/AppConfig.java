@@ -1,11 +1,11 @@
 package com.example.demo;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@AutoConfiguration
+@Configuration(proxyBeanMethods = false)
 public class AppConfig {
 
     @Bean

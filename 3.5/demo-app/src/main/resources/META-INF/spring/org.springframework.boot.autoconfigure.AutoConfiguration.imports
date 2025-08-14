@@ -1,2 +1,1 @@
-com.example.demo.AppConfig
-com.example.demo.FooConfig
+com.example.demo.FooAutoConfiguration
