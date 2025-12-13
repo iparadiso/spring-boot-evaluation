@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.model.Product;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -21,11 +23,13 @@ public class ProductService {
         idGenerator.set(3);
     }
 
+    @Cacheable(value = "products", key = "#id")
     public Optional<Product> getProductById(Long id) {
         System.out.println("Fetching product from data store for id: " + id);
         return Optional.ofNullable(dataStore.get(id));
     }
 
+    @CachePut(value = "products", key = "#product.id")
     public Product saveOrUpdateProduct(Product product) {
         if (product.getId() == null) {
             product.setId(idGenerator.getAndIncrement());
