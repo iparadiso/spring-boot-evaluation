@@ -1,0 +1,6 @@
+rootProject.name = 'spring-web-mixed-version-reproducer'
+
+// legacy-library : built against Spring Boot 3 / Spring Framework 6.0.x, published as a jar.
+// server         : the Spring Boot 4 / Spring Framework 7 application that consumes that jar.
+include 'legacy-library'
+include 'server'

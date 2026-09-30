@@ -1,0 +1,34 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+// Spring Boot 3 baseline.
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+dependencies {
+	// Spring Boot 3 dependency management.
+	compileOnly platform('org.springframework.boot:spring-boot-dependencies:3.0.13')
+
+	// Spring Boot 3 / Spring Framework 6.0.x. In 6.0.x, HttpHeaders still implements
+	// MultiValueMap<String, String>, which is what makes the bytecode in this module link
+	// HttpEntity/RequestEntity/ResponseEntity through their MultiValueMap constructors.
+	compileOnly 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.springframework.boot:spring-boot-autoconfigure'
+	compileOnly 'org.springframework:spring-web:6.0.13'
+	compileOnly 'org.springframework:spring-core:6.0.13'
+}
+
+// These dependencies are compileOnly on purpose. They build the jar and are not exported, so the
+// server module runs this bytecode against exactly one spring-web -- the 7.x that Spring Boot 4
+// brings in. Check with: ./gradlew :server:dependencies --configuration runtimeClasspath

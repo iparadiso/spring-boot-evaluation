@@ -1,0 +1,7 @@
+// Intentionally empty.
+//
+// All configuration lives in the two modules so that each one's Spring version is stated
+// plainly in its own build file:
+//
+//   legacy-library/build.gradle  -> Spring Boot 3 / Spring Framework 6.0.x  (compiles the jar)
+//   server/build.gradle          -> Spring Boot 4 / Spring Framework 7.x    (runs the jar)
